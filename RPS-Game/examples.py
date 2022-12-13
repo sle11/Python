@@ -31,7 +31,7 @@ age = 2 #can make it float by float(2)
 print(isinstance(age, float)) #false since it's not a decimal number
 
 #complex for complex numbers
-#bool for booleans
+#bool for booleans - String, list, tuple, dict, and set is false only when empty. All numbers is True except for 0 which is False
 #list for lists - A collection which is ordered and changeable. Allows duplicate members.
 #tuple for tuples - A collection which is ordered and unchangeable. Allows duplicate members.
 #range for ranges
@@ -52,6 +52,27 @@ list2 = [1, 5, 7, 9, 3]
 list3 = [True, False, False]
 food = ['pizza', 'carrots', 'eggs']
 dinner = random.choice(food)
+print('pizza' in food) #True
+print(food[0]) #pizza
+print(food[-1]) #eggs
+print(food[0:2]) #splicing; going from index 0 to 1 and stop at 2(does not include 2); pizza, carrots
+print(food[1:]) #carrots, eggs
+print(food[:1]) #pizza
+print(len(food)) #3
+food.append('pie') #adding an object to the list; add pie to the list 
+food.extend(['apple', 'cake']) #can add another list by using extend
+#food += ['apple, cake'] same as above; same as extend
+food.remove('apple') #removing from list; remove apple from list
+print(food.pop()) #remove and return the object at the end of the list (last item of the list)
+food.insert(2, 'salt') #insert an item at a certain index of a list; insert salt at index 2
+food[1:1] = ['banana', 'cherry'] #adding multiple items to list; add banana and cherry at index 1 [pizza, banana, cherry...]
+#sorting modify the original list content, so save it in another variable
+foodCopy = food[:]
+food.sort() #sort the list by alphabetical order; Uppercase letter first then lower case
+food.sort(key=str.lower) #ignoring the cases and sort in alphabetical order
+print(sorted(food, key=str.lower)) #can use the sorted global function to not modify original list
+food[2] = 'milk' #updating list; changing eggs to milk
+
 
 #Example Dictionaries
 #Uses { }
@@ -123,5 +144,40 @@ def is_adult1(age):
 def is_adult2(age):
     return True if age > 18 else False
 
+
+#Example any and all
+#any return True if any is true
+#all return True if all is true
+ingrediants_purchased = True
+meal_cooked = False
+ready_to_serve = any([ingrediants_purchased, meal_cooked]) #True
+ready_to_serve = all([ingrediants_purchased, meal_cooked]) #False
+
+
+#Example complex number
+num1 = 2+3j
+num2 = complex(2,3) #2 is the real number, 3 is the imaginary
+print(num1.real, num2.imag)
+
+
+#Example Built-in Functions
+print(abs(-5.5)) #absolute - 5.5
+print(round(5.49)) #round - 5
+print(round(5.49, 1)) #round to the nearest decimal point 5.5
+
+#Example Enum
+from enum import Emum
+
+class State(Enum):
+    INACTIVE = 0
+    ACTIVE = 1
+
+print(State.ACTIVE) #State.ACTIVE
+print(State.ACTIVE.value) #1
+print(State(1)) #State.ACTIVE
+print(State['ACTIVE']) #State.ACTIVE
+print(State['ACTIVE'].value) #1
+print(list(State)) #[<State.INACTIVE: 0>, <State.ACTIVE: 1>]
+print(len(State)) #2
 
 
